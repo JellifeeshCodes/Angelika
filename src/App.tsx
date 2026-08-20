@@ -16,6 +16,10 @@ import winLogo from './assets/logo.png';
 function App() {
   const authenticated = useAuth((state) => state.authenticated);
 
+  // Define target and proxy URL here before the return statement
+  const targetUrl = 'https://www.bing.com';
+  const proxyUrl = `https://my-proxy.onrender.com/proxy?url=${encodeURIComponent(targetUrl)}`;
+
   return (
     <div 
       style={{ 
@@ -65,17 +69,19 @@ function App() {
             </DesktopIcon>
 
             <DesktopIcon icon={<Inetcpl1313 />} name="Browser">
-          const targetUrl = 'https://www.bing.com';
-const proxyUrl = `https://my-proxy.onrender.com/proxy?url=${encodeURIComponent(targetUrl)}`;
-
-<iframe src={proxyUrl} title="Browser" width="100%" height="500px" />
+              <iframe 
+                src={proxyUrl} 
+                title="Browser" 
+                width="100%" 
+                height="500px" 
+                style={{ border: "none" }}
+              />
             </DesktopIcon>
 
             <DesktopIcon width={650} icon={<Wordpad />} name="Resume">
               <Resume />
             </DesktopIcon>
 
-            {/* Fixed: Replaced undefined Mspaint with imported Pbrush1 icon */}
             <DesktopIcon width={650} icon={<Pbrush1 />} name="Art Gallery">
               <ArtGallery />
             </DesktopIcon>
