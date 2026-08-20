@@ -66,7 +66,7 @@ function App() {
 
             <DesktopIcon icon={<Inetcpl1313 />} name="Browser">
   <iframe 
-    src={`https://render-server-e5t6.onrender.com/proxy?url=${encodeURIComponent('https://html.duckduckgo.com/html/')}`} 
+    src={`https://render-server-1-rtai.onrender.com/proxy?url=${encodeURIComponent('https://html.duckduckgo.com/html/')}`} 
     title="Browser" 
     width="100%" 
     height="500px" 
