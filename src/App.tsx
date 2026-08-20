@@ -65,7 +65,10 @@ function App() {
             </DesktopIcon>
 
             <DesktopIcon icon={<Inetcpl1313 />} name="Browser">
-           <a href="https://www.bing.com" target="_blank" rel="noopener noreferrer">Search on Bing</a>
+          const targetUrl = 'https://www.bing.com';
+const proxyUrl = `https://my-proxy.onrender.com/proxy?url=${encodeURIComponent(targetUrl)}`;
+
+<iframe src={proxyUrl} title="Browser" width="100%" height="500px" />
             </DesktopIcon>
 
             <DesktopIcon width={650} icon={<Wordpad />} name="Resume">
