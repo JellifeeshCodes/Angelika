@@ -1,4 +1,4 @@
-import React, { type ReactElement, type ReactNode, type ComponentType } from "react";
+import React, { type ReactNode, type ComponentType } from "react";
 import { Modal, TitleBar } from "@react95/core";
 import { useWindowsStore } from "../store/windows";
 
@@ -11,56 +11,17 @@ const styles = {
     padding: "10px",
     borderRadius: "8px",
     textAlign: "center",
-    width: "100px",
-    gap: "10px",
+    width: "80px",
+    gap: "6px",
   },
   iconName: {
     color: "#ffffff",
-    fontSize: "14px",
+    fontSize: "13px",
     margin: "0",
-    textShadow: "1px 1px 3px rgba(0, 0, 0, 0.7)",
+    textShadow: "1px 1px 3px rgba(0, 0, 0, 0.8)",
     userSelect: "none",
   },
 } as const;
-
-interface WindowProps {
-  icon: ReactNode; 
-  title: string;
-  children: ReactNode;
-  width?: number;
-  height?: number;
-  onClose: () => void;
-}
-
-const Window = ({ title, onClose, children, icon, width = 500, height }: WindowProps) => {
-  return (
-    <div style={{ position: "fixed", top: "50px", left: "150px", zIndex: 999 }}>
-      <SafeModal
-        id={title}
-        icon={icon}
-        title={title}
-        closeModal={onClose}
-        style={{
-          width: `${width}px`,
-          height: height ? `${height}px` : "auto",
-          maxWidth: "90vw",
-          maxHeight: "80vh",
-        }}
-        titleBarOptions={[
-          <TitleBar.Close
-            style={{ marginBlock: "auto" }}
-            key="close"
-            onClick={onClose}
-          />,
-        ]}
-      >
-        <div style={{ padding: "8px", overflowY: "auto", maxHeight: "calc(80vh - 40px)" }}>
-          {children}
-        </div>
-      </SafeModal>
-    </div>
-  );
-};
 
 interface DesktopIconProps {
   icon: ReactNode; 
@@ -74,7 +35,7 @@ const DesktopIcon = ({
   icon,
   name,
   children,
-  width,
+  width = 500,
   height,
 }: DesktopIconProps) => {
   const { openWindow, closeWindow, isWindowOpen } = useWindowsStore();
@@ -84,44 +45,50 @@ const DesktopIcon = ({
     openWindow(name);
   };
 
-  const handleCloseWindow = () => {
+  const handleClose = () => {
     closeWindow(name);
-  };
-
-  const renderIcon = (variantSize: string) => {
-    if (!React.isValidElement(icon)) {
-      return null; 
-    }
-    if (typeof icon.type === "string") {
-      return icon; 
-    }
-    try {
-      return React.cloneElement(icon as ReactElement, { variant: variantSize } as Record<string, unknown>);
-    } catch {
-      return icon;
-    }
   };
 
   return (
     <>
+      {/* Desktop Icon Launcher */}
       <div 
         style={styles.desktopIcon} 
-        onDoubleClick={handleOpen}
         onClick={handleOpen}
+        onDoubleClick={handleOpen}
       >
-        {renderIcon("32x32_4")}
+        <div style={{ width: 32, height: 32, display: "flex", justifyContent: "center", alignItems: "center" }}>
+          {icon}
+        </div>
         <p style={styles.iconName}>{name}</p>
       </div>
+
+      {/* Render Modal Window when Open */}
       {isOpen && (
-        <Window
-          width={width}
-          height={height}
-          icon={renderIcon("32x32_4")}
+        <SafeModal
+          id={name}
+          icon={icon}
           title={name}
-          onClose={handleCloseWindow}
+          closeModal={handleClose}
+          defaultPosition={{ x: 120, y: 40 }}
+          style={{
+            width: `${width}px`,
+            maxWidth: "90vw",
+            height: height ? `${height}px` : "auto",
+            maxHeight: "80vh",
+          }}
+          titleBarOptions={[
+            <TitleBar.Close
+              style={{ marginBlock: "auto" }}
+              key="close"
+              onClick={handleClose}
+            />,
+          ]}
         >
-          {children}
-        </Window>
+          <div style={{ padding: "12px", overflowY: "auto", maxHeight: "calc(80vh - 50px)" }}>
+            {children}
+          </div>
+        </SafeModal>
       )}
     </>
   );
