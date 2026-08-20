@@ -110,9 +110,9 @@ function App() {
             </WindowErrorBoundary>
 
             <WindowErrorBoundary>
-              <DesktopIcon width={650} icon={<Pbrush1 />} name="Art Gallery">
-                <ArtGallery />
-              </DesktopIcon>
+              <DesktopIcon width={750} icon={<Pbrush1 />} name="Art Gallery">
+  <ArtGallery />
+</DesktopIcon>
             </WindowErrorBoundary>
 
             <WindowErrorBoundary>
