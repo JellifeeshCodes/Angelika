@@ -11,12 +11,12 @@ import Game from "./components/Game";
 import ArtGallery from "./components/ArtGallery";
 import { useAuth } from "./store/auth";
 
-import winLogo from './assets/logo.png'; 
+import winLogo from './assets/logo.png';
 
 function App() {
   const authenticated = useAuth((state) => state.authenticated);
 
-  // Define target and proxy URL here before the return statement
+  // Target website and external proxy URL for embedded browser
   const targetUrl = 'https://www.bing.com';
   const proxyUrl = `https://my-proxy.onrender.com/proxy?url=${encodeURIComponent(targetUrl)}`;
 
