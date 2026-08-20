@@ -36,7 +36,7 @@ const DesktopIcon = ({
   icon,
   name,
   children,
-  width = 550,
+  width = 600,
   height,
 }: DesktopIconProps) => {
   const { openWindow, closeWindow, isWindowOpen } = useWindowsStore();
@@ -64,7 +64,7 @@ const DesktopIcon = ({
         <p style={styles.iconName}>{name}</p>
       </div>
 
-      {/* Render Modal directly on document.body using React Portal */}
+      {/* Portal Window Render */}
       {isOpen &&
         createPortal(
           <SafeModal
@@ -72,9 +72,14 @@ const DesktopIcon = ({
             icon={icon}
             title={name}
             closeModal={handleClose}
-            defaultPosition={{ x: 120, y: 40 }}
+            defaultPosition={{ x: 100, y: 30 }}
             width={width}
             height={height}
+            style={{
+              width: `${width}px`,
+              maxWidth: "calc(100vw - 120px)",
+              boxSizing: "border-box",
+            }}
             titleBarOptions={[
               <TitleBar.Close
                 style={{ marginBlock: "auto" }}
@@ -85,8 +90,9 @@ const DesktopIcon = ({
           >
             <div 
               style={{ 
-                padding: "8px", 
+                padding: "12px", 
                 overflowY: "auto", 
+                overflowX: "hidden",
                 boxSizing: "border-box",
                 width: "100%",
                 maxHeight: "calc(80vh - 40px)",
