@@ -82,8 +82,8 @@ function App() {
             <WindowErrorBoundary>
               <DesktopIcon icon={<Amovie2 />} name="Video">
                 <iframe 
-                  width="420" 
-                  height="315" 
+                  width="1920" 
+                  height="1080" 
                   src="https://www.youtube.com/embed/ZW5xq6K4Gz4" 
                   allowFullScreen 
                   title="Video Player" 
