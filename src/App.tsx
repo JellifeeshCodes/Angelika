@@ -116,10 +116,10 @@ function App() {
             </WindowErrorBoundary>
 
             <WindowErrorBoundary>
-              <DesktopIcon width={450} height={450} icon={<Joy102 />} name="Game">
-                <Game />
-              </DesktopIcon>
-            </WindowErrorBoundary>
+  <DesktopIcon width={460} height={510} icon={<Joy102 />} name="Game">
+    <Game />
+  </DesktopIcon>
+</WindowErrorBoundary>
 
             <WindowErrorBoundary>
               <DesktopIcon width={400} icon={<Mail />} name="Contact">
