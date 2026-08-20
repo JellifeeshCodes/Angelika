@@ -74,6 +74,7 @@ function App() {
               padding: "20px", 
               display: "flex", 
               flexDirection: "column", 
+              alignItems: "flex-start",
               gap: "20px", 
               zIndex: 1, 
               position: "relative" 
