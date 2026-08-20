@@ -1,6 +1,6 @@
 import { Frame, List } from "@react95/core";
 import { Mail } from "@react95/icons";
-import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
 
 const contactLinks = [
   {
