@@ -16,7 +16,7 @@ const artData: ArtItem[] = [
     title: "linux girl",
     year: "2026",
     category: "Digital Art",
-    imageUrl: "/art/linux-girl.png", // replace with your image import or path
+    imageUrl: "https://64.media.tumblr.com/0aba985d59874588f49ef6fed9e5af22/0cf21d95b323dd13-cd/s2048x3072/59b43b0569ac862b783f5649020c1fc5ad905155.pnj",
     medium: "Digital Painting (Procreate)",
     description: "A shirtless girl thinking with Linux in the background.",
   },
@@ -25,9 +25,18 @@ const artData: ArtItem[] = [
     title: "joint girl",
     year: "2026",
     category: "Digital Art",
-    imageUrl: "/art/joint-girl.png", // replace with your image import or path
+    imageUrl: "https://64.media.tumblr.com/5b5509047342cc288f74b69164dbecce/dd1c4aad1231feb1-cc/s2048x3072/b19499c30f66db1ddf31b7333b3fe05903c7c801.pnj",
     medium: "Digital Painting (Procreate)",
     description: "A shirtless girl smoking a joint.",
+  },
+  {
+    id: "bobbi",
+    title: "bobbi",
+    year: "2026",
+    category: "Digital Art",
+    imageUrl: "https://64.media.tumblr.com/5a1b31b04f5d019a6f7d10b48c0a693e/f62644258e3b9c1b-48/s2048x3072/078e4fd5747def314b7bd6dd5282976c034e7f2f.pnj",
+    medium: "Digital Painting (Procreate)",
+    description: "Portrait illustration of Bobbi.",
   },
 ];
 
@@ -92,7 +101,7 @@ const ArtGallery = () => {
             {item.title} ({item.year})
           </legend>
 
-          {/* Uncropped, Full-Width Image Box */}
+          {/* Full-width Image Frame */}
           <div
             style={{
               border: "2px solid #808080",
