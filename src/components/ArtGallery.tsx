@@ -1,130 +1,130 @@
-import { Avatar, Checkbox, Fieldset, ProgressBar, Tab, Tabs } from '@react95/core';
+import React, { useState } from 'react';
 
-function Resume() {
-  return (
-    <Tabs defaultActiveTab="Introduction">
-      <Tab title="Introduction">
-        <h3>Welcome, I'm Angelika Dael</h3>
-        <Avatar src="https://64.media.tumblr.com/aa24bb5b35058ab8c9d67db5fcfa711a/ca954de598e315cd-88/s2048x3072/29bc53e526f2e6c3fd9ea036b485bb8412ee1a22.jpg" alt="A portrait of the artisan" size="140px" />
-
-        <p>An ICT Support Officer at St Vincent de Paul Society Australia</p>
-        <Fieldset legend="My Story">
-          <p>
-            I began my IT journey in Wirreanda Highschool, where I studied Information Technology and 3D Animation. 
-            I completed work experience at IT & Computers in Christies, SA. I then changed my course path to working with animals. 
-            After years of working in kennels and catteries, I decided that I wanted to return to IT. 
-            So I applied for jobs in the IT industry and landed a job as an ICT Support Officer at St Vincent de Paul Society Australia. 
-            Here, I provide technical support and solutions to ensure smooth operations across the organization.
-          </p>
-        </Fieldset>
-      </Tab>
-      <Tab title="Employment History">
-        <Fieldset legend="ICT Support Officer - St Vincent de Paul Society Australia (Jan 2026 - Present)">
-          <Checkbox readOnly checked>
-            Delivered top-tier technical support and solutions, ensuring seamless operations across the organization.
-          </Checkbox>
-          <Checkbox readOnly checked>
-            Handling the IT Helpdesk, managing asset registers, and answering phone calls.
-          </Checkbox>
-        </Fieldset>
-        <Fieldset legend="Deli Team Member - Coles Supermarkets (Nov 2024 - Jan 2025)">
-          <Checkbox readOnly checked>
-            Providing great customer service and maintaining high standards of food safety and hygiene.
-          </Checkbox>
-        </Fieldset>
-        <Fieldset legend="Kennal Attendant & Recceptionist - Hanrob Pet Hotel (Aug-Dec 2023)">
-          <Checkbox readOnly checked>
-            Ensured the well-being and comfort of pets, delivering exceptional care and customer service in a fast-paced environment.
-          </Checkbox>
-          <Checkbox readOnly checked>
-            Managed front desk operations, including bookings, inquiries, and administrative tasks, contributing to smooth daily operations.
-          </Checkbox>
-        </Fieldset>
-        <Fieldset legend="Service Assistant - Coles Supermarkets (2014 - 2017 & 2022 - 2023)">
-          <Checkbox readOnly checked>
-            Delivered exceptional customer service, ensuring a positive shopping experience for all customers.
-          </Checkbox>
-          <Checkbox readOnly checked>
-            Assisting with Coles Online Click and Collect services, ensuring accurate and timely order fulfillment.
-          </Checkbox>
-        </Fieldset>
-      </Tab>
-      <Tab title="Skills & Languages">
-        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '16px' }}>
-          <Fieldset legend="IT Skills & Languages">
-            <ul>
-              <li className="resume-skills">Critical Thinking & Problem Solving</li>
-              <ProgressBar percent={98} width="200px" />
-              <li className="resume-skills">Cyber Security Risk Management</li>
-              <ProgressBar percent={80} width="200px" />
-              <li className="resume-skills">Proficiebt Microsoft and Linux OS</li>
-              <ProgressBar percent={97} width="200px" />
-              <li className="resume-skills">Customer Service Skills</li>
-              <ProgressBar percent={98} width="200px" />
-              <li className="resume-skills">Python</li>
-              <ProgressBar percent={69} width="200px" />
-              <li className="resume-skills">CSS</li>
-              <ProgressBar percent={80} width="200px" />
-              <li className="resume-skills">HTML</li>
-              <ProgressBar percent={78} width="200px" />
-            </ul>
-          </Fieldset>
-          <Fieldset legend="Animal Care Skills">
-            <ul>
-              <li className="resume-skills">Maintain & Monitor Animal Health</li>
-              <ProgressBar percent={92} width="200px" />
-              <li className="resume-skills">Provide Enrichment for Animals</li>
-              <ProgressBar percent={100} width="200px" />
-              <li className="resume-skills">Provide Nutritional Requirements</li>
-              <ProgressBar percent={94} width="200px" />
-              <li className="resume-skills">Provide Reception Services</li>
-              <ProgressBar percent={85} width="200px" />
-            </ul>
-          </Fieldset>
-        </div>
-      </Tab>
-      <Tab title="Education">
-        <Fieldset legend="Education">
-          <Checkbox readOnly checked>
-            2020 - CERTIFICATE III ANIMAL STUDIES (SPECIALISED IN VET NURSING), BOXHILL LILYDALE VIC
-          </Checkbox>
-          <Checkbox readOnly checked>
-            2013-2017 | YEAR 12, WIRREANDA SECONDARY SCHOOL MORPHETT VALE, SA
-             <li>Award for Outstanding Achievement in Digital Technology.</li>
-          </Checkbox>
-        </Fieldset>
-                <Fieldset legend="Achievements">
-          <Checkbox readOnly checked>
-            Current - South Australian Full Driver's License
-          </Checkbox>
-          <Checkbox readOnly checked>
-            2025 - Certificate of Completion (CC-RNCKPX92) – SQL Intermediate
-          </Checkbox>          <Checkbox readOnly checked>
-           2025 - Certificate of Completion (CC-LV755ADA) – Introduction to SQL
-          </Checkbox> 
-                    <Checkbox readOnly checked>
-            2020 - Certificate III in Animal Studies (Specialized in Vet Nursing) | Bravecto Online Training.
-          </Checkbox>
-                    <Checkbox readOnly checked>
-            2015 - Certificate II Creative Industries (Media) - 3D Animation Foundation (CUA20215) at Wirreanda Secondary School, partnered by AIE.
-          </Checkbox>        
-        </Fieldset>
-      </Tab>
-      <Tab title="References & Availability">
-        <Fieldset legend="References">
-            <ul>
-              <li className="references">Maria DeBoer – Manager – Coles Supermarket</li>
-              <li className="references">Christian Dael – Manager – Pizza Pan</li>
-            </ul>
-        </Fieldset>
-                <Fieldset legend="Availability">
-            <ul>
-              <li className="availability">Tuesdays, Fridays, Saturdays & Sundays</li>
-            </ul>
-        </Fieldset>
-      </Tab>
-    </Tabs>
-  );
+interface ArtItem {
+  id: string;
+  category: string;
+  title: string;
+  medium: string;
+  year: string;
+  description: string;
+  src: string;
 }
 
-export default Resume;
+const galleryData: ArtItem[] = [
+  {
+    id: 'art-1',
+    category: 'Digital Art',
+    title: 'linux girl',
+    medium: 'Digital Painting (Procreate)',
+    year: '2026',
+    description: 'A shirtless girl thinking with Linux in the background.',
+    src: 'https://64.media.tumblr.com/0aba985d59874588f49ef6fed9e5af22/0cf21d95b323dd13-cd/s2048x3072/59b43b0569ac862b783f5649020c1fc5ad905155.pnj',
+  },
+  {
+    id: 'art-2',
+    category: 'Digital Art',
+    title: 'joint girl',
+    medium: 'Digital Painting (Procreate)',
+    year: '2026',
+    description: 'A shirtless girl smoking a joint.',
+    src: 'https://64.media.tumblr.com/5b5509047342cc288f74b69164dbecce/dd1c4aad1231feb1-cc/s2048x3072/b19499c30f66db1ddf31b7333b3fe05903c7c801.pnj',
+  },
+  {
+    id: 'art-3',
+    category: 'Digital Art',
+    title: 'bobbi',
+    medium: 'Digital Painting (Procreate)',
+    year: '2025',
+    description: 'My mums dog.',
+    src: 'https://64.media.tumblr.com/5a1b31b04f5d019a6f7d10b48c0a693e/f62644258e3b9c1b-48/s2048x3072/078e4fd5747def314b7bd6dd5282976c034e7f2f.pnj',
+  },
+];
+
+export default function ArtGallery() {
+  const [activeTab, setActiveTab] = useState('All Works');
+
+  const filteredArt = galleryData.filter((art) => {
+    if (activeTab === 'Digital Art') return art.category === 'Digital Art';
+    if (activeTab === '3D & Assets') return art.category === '3D & Assets';
+    return true;
+  });
+
+  return (
+    <div style={{ padding: '12px', backgroundColor: '#c0c0c0', color: '#000', height: '100%' }}>
+      {/* Tab Navigation */}
+      <div style={{ display: 'flex', gap: '4px', marginBottom: '8px' }}>
+        {['All Works', 'Digital Art', '3D & Assets'].map((tab) => (
+          <button
+            key={tab}
+            onClick={() => setActiveTab(tab)}
+            style={{
+              padding: '4px 10px',
+              backgroundColor: '#c0c0c0',
+              border: '2px solid',
+              borderColor: activeTab === tab ? '#000 #fff #fff #000' : '#fff #000 #000 #fff',
+              fontWeight: activeTab === tab ? 'bold' : 'normal',
+              cursor: 'pointer',
+              fontSize: '13px',
+            }}
+          >
+            {tab}
+          </button>
+        ))}
+      </div>
+
+      {/* Main Container */}
+      <div 
+        style={{ 
+          border: '2px solid', 
+          borderColor: '#808080 #fff #fff #808080', 
+          backgroundColor: '#c0c0c0', 
+          padding: '12px', 
+          maxHeight: '400px', 
+          overflowY: 'auto' 
+        }}
+      >
+        <h3 style={{ margin: '0 0 8px 0' }}>Angelika's Portfolio</h3>
+        <p style={{ margin: '0 0 16px 0', fontSize: '13px' }}>
+          A collection of digital artwork, illustrations, and 3D models.
+        </p>
+
+        {filteredArt.map((art) => (
+          <fieldset
+            key={art.id}
+            style={{
+              border: '2px groove #dfdfdf',
+              marginBottom: '16px',
+              padding: '12px',
+            }}
+          >
+            <legend style={{ padding: '0 4px', fontWeight: 'bold', fontSize: '13px' }}>
+              {art.title} ({art.year})
+            </legend>
+            <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', alignItems: 'flex-start' }}>
+              <div 
+                style={{ 
+                  border: '2px solid', 
+                  borderColor: '#808080 #fff #fff #808080', 
+                  padding: '2px', 
+                  backgroundColor: '#fff' 
+                }}
+              >
+                <img
+                  src={art.src}
+                  alt={art.title}
+                  style={{ width: '200px', height: '150px', objectFit: 'cover', display: 'block' }}
+                />
+              </div>
+              <div style={{ flex: 1, minWidth: '180px' }}>
+                <p style={{ margin: '0 0 8px 0', fontWeight: 'bold', fontSize: '13px' }}>
+                  Medium: <span style={{ fontWeight: 'normal' }}>{art.medium}</span>
+                </p>
+                <p style={{ margin: 0, fontSize: '13px' }}>{art.description}</p>
+              </div>
+            </div>
+          </fieldset>
+        ))}
+      </div>
+    </div>
+  );
+}
