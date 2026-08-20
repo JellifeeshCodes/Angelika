@@ -8,8 +8,6 @@ const contactLinks = [
   {
     icon: <FaLinkedin size={24} />, label: "LinkedIn", url: "https://www.linkedin.com/in/angelika-dael-2383b4174/" },
   {
-    icon: <FaTwitter size={24} />, label: "Twitter(X)", url: "https://x.com/JellifeeshCodes" },
-  {
     icon: <Mail variant="32x32_4" />, label: "Email", url: "mailto:AngelikaRDael@proton.me" },
 ];
 
