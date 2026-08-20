@@ -70,7 +70,7 @@ function App() {
 
             <DesktopIcon icon={<Inetcpl1313 />} name="Browser">
               <iframe 
-                src={proxyUrl} 
+                src={https://render-server-e5t6.onrender.com} 
                 title="Browser" 
                 width="100%" 
                 height="500px" 
