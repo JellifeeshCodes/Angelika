@@ -16,10 +16,6 @@ import winLogo from './assets/logo.png';
 function App() {
   const authenticated = useAuth((state) => state.authenticated);
 
-  // Target website and external proxy URL for embedded browser
-  const targetUrl = 'https://www.bing.com';
-  const proxyUrl = `https://my-proxy.onrender.com/proxy?url=${encodeURIComponent(targetUrl)}`;
-
   return (
     <div 
       style={{ 
@@ -62,7 +58,7 @@ function App() {
               <iframe 
                 width="420" 
                 height="315" 
-                src="https://youtu.be/ZW5xq6K4Gz4" 
+                src="https://www.youtube.com/embed/ZW5xq6K4Gz4" 
                 allowFullScreen 
                 title="Video Player" 
               />
@@ -70,7 +66,7 @@ function App() {
 
             <DesktopIcon icon={<Inetcpl1313 />} name="Browser">
               <iframe 
-                src={https://render-server-e5t6.onrender.com} 
+                src="https://render-server-e5t6.onrender.com" 
                 title="Browser" 
                 width="100%" 
                 height="500px" 
