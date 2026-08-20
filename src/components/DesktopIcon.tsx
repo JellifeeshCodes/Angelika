@@ -32,39 +32,33 @@ interface WindowProps {
   onClose: () => void;
 }
 
-const Window = ({ title, onClose, children, icon, width = 600, height = 450 }: WindowProps) => {
+const Window = ({ title, onClose, children, icon, width = 500, height }: WindowProps) => {
   return (
-    <SafeModal
-      id={title}
-      icon={icon}
-      title={title}
-      closeModal={onClose}
-      defaultPosition={{ x: 100, y: 40 }}
-      width={width}
-      height={height}
-      style={{
-        maxWidth: "90vw",
-        maxHeight: "85vh",
-      }}
-      titleBarOptions={[
-        <TitleBar.Close
-          style={{ marginBlock: "auto" }}
-          key="close"
-          onClick={onClose}
-        />,
-      ]}
-    >
-      <div 
-        style={{ 
-          padding: "8px", 
-          overflowY: "auto", 
-          height: "calc(100% - 30px)", 
-          boxSizing: "border-box" 
+    <div style={{ position: "fixed", top: "50px", left: "150px", zIndex: 999 }}>
+      <SafeModal
+        id={title}
+        icon={icon}
+        title={title}
+        closeModal={onClose}
+        style={{
+          width: `${width}px`,
+          height: height ? `${height}px` : "auto",
+          maxWidth: "90vw",
+          maxHeight: "80vh",
         }}
+        titleBarOptions={[
+          <TitleBar.Close
+            style={{ marginBlock: "auto" }}
+            key="close"
+            onClick={onClose}
+          />,
+        ]}
       >
-        {children}
-      </div>
-    </SafeModal>
+        <div style={{ padding: "8px", overflowY: "auto", maxHeight: "calc(80vh - 40px)" }}>
+          {children}
+        </div>
+      </SafeModal>
+    </div>
   );
 };
 
@@ -94,7 +88,6 @@ const DesktopIcon = ({
     closeWindow(name);
   };
 
-  // Safe icon renderer to prevent crashes if an icon variant doesn't exist
   const renderIcon = (variantSize: string) => {
     if (!React.isValidElement(icon)) {
       return null; 
