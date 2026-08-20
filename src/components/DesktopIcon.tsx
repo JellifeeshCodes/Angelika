@@ -77,7 +77,8 @@ const DesktopIcon = ({
             height={height}
             style={{
               width: `${width}px`,
-              maxWidth: "calc(100vw - 120px)",
+              minWidth: `${width}px`,
+              maxWidth: `${width}px`,
               boxSizing: "border-box",
             }}
             titleBarOptions={[
