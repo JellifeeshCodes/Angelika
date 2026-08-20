@@ -1,6 +1,6 @@
-import { Fieldset, Frame, Tab, Tabs } from '@react95/core';
+import React, { useState } from 'react';
+import { Button, Fieldset, Frame } from '@react95/core';
 
-// Sample gallery data structure - replace src links and details with your own artworks
 const galleryData = [
   {
     id: 'art-1',
@@ -67,35 +67,43 @@ function GalleryItem({ item }) {
 }
 
 function ArtGallery() {
-  const digitalArt = galleryData.filter((art) => art.category === 'Digital Art');
-  const threeDArt = galleryData.filter((art) => art.category === '3D & Assets');
+  const [activeTab, setActiveTab] = useState('All Works');
+
+  const filteredArt = galleryData.filter((art) => {
+    if (activeTab === 'Digital Art') return art.category === 'Digital Art';
+    if (activeTab === '3D & Assets') return art.category === '3D & Assets';
+    return true;
+  });
 
   return (
-    <Tabs defaultActiveTab="All Works">
-      <Tab title="All Works">
+    <div style={{ padding: '8px', maxHeight: '500px', overflowY: 'auto' }}>
+      {/* Retro Tab Bar */}
+      <div style={{ display: 'flex', gap: '4px', marginBottom: '8px' }}>
+        {['All Works', 'Digital Art', '3D & Assets'].map((tab) => (
+          <Button
+            key={tab}
+            active={activeTab === tab}
+            onClick={() => setActiveTab(tab)}
+            style={{ fontWeight: activeTab === tab ? 'bold' : 'normal' }}
+          >
+            {tab}
+          </Button>
+        ))}
+      </div>
+
+      <Frame boxShadow="in" style={{ padding: '16px', backgroundColor: '#c0c0c0' }}>
         <h3 style={{ marginTop: 0 }}>Angelika's Portfolio</h3>
         <p style={{ marginBottom: '16px' }}>
           A collection of digital artwork, illustrations, and 3D models.
         </p>
-        {galleryData.map((art) => (
-          <GalleryItem key={art.id} item={art} />
-        ))}
-      </Tab>
 
-      <Tab title="Digital Art">
-        <h3 style={{ marginTop: 0 }}>Digital Paintings & Vectors</h3>
-        {digitalArt.map((art) => (
-          <GalleryItem key={art.id} item={art} />
-        ))}
-      </Tab>
-
-      <Tab title="3D & Assets">
-        <h3 style={{ marginTop: 0 }}>3D Models & Environments</h3>
-        {threeDArt.map((art) => (
-          <GalleryItem key={art.id} item={art} />
-        ))}
-      </Tab>
-    </Tabs>
+        {filteredArt.length === 0 ? (
+          <p style={{ fontStyle: 'italic' }}>No artworks available in this category.</p>
+        ) : (
+          filteredArt.map((art) => <GalleryItem key={art.id} item={art} />)
+        )}
+      </Frame>
+    </div>
   );
 }
 
