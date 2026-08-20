@@ -13,7 +13,6 @@ import { useAuth } from "./store/auth";
 
 import winLogo from './assets/logo.png';
 
-// Simple Error Boundary Component to prevent full-screen crash
 class WindowErrorBoundary extends Component<{ children: ReactNode }, { hasError: boolean; error: string }> {
   state = { hasError: false, error: '' };
 
@@ -28,9 +27,9 @@ class WindowErrorBoundary extends Component<{ children: ReactNode }, { hasError:
   render() {
     if (this.state.hasError) {
       return (
-        <div style={{ padding: '16px', color: 'red', backgroundColor: '#fff', border: '2px solid red' }}>
-          <h4>Error Loading Window:</h4>
-          <pre style={{ fontSize: '11px', whiteSpace: 'pre-wrap' }}>{this.state.error}</pre>
+        <div style={{ padding: '16px', color: 'red', backgroundColor: '#fff', border: '2px solid red', width: '300px' }}>
+          <h4 style={{ margin: '0 0 8px 0' }}>Window Error</h4>
+          <pre style={{ fontSize: '11px', whiteSpace: 'pre-wrap', margin: 0 }}>{this.state.error}</pre>
         </div>
       );
     }
@@ -75,55 +74,60 @@ function App() {
               display: "flex", 
               flexDirection: "column", 
               alignItems: "flex-start",
-              gap: "20px", 
+              gap: "16px", 
               zIndex: 1, 
               position: "relative" 
             }}
           >
-            <DesktopIcon icon={<Amovie2 />} name="Video">
-              <iframe 
-                width="420" 
-                height="315" 
-                src="https://www.youtube.com/embed/ZW5xq6K4Gz4" 
-                allowFullScreen 
-                title="Video Player" 
-              />
-            </DesktopIcon>
+            <WindowErrorBoundary>
+              <DesktopIcon icon={<Amovie2 />} name="Video">
+                <iframe 
+                  width="420" 
+                  height="315" 
+                  src="https://www.youtube.com/embed/ZW5xq6K4Gz4" 
+                  allowFullScreen 
+                  title="Video Player" 
+                />
+              </DesktopIcon>
+            </WindowErrorBoundary>
 
-            <DesktopIcon icon={<Inetcpl1313 />} name="Browser">
-              <iframe 
-                src={`https://render-server-1-rtai.onrender.com/proxy?url=${encodeURIComponent('https://html.duckduckgo.com/html/')}`} 
-                title="Browser" 
-                width="100%" 
-                height="500px" 
-                style={{ border: "none" }}
-              />
-            </DesktopIcon>
+            <WindowErrorBoundary>
+              <DesktopIcon icon={<Inetcpl1313 />} name="Browser">
+                <iframe 
+                  src={`https://render-server-1-rtai.onrender.com/proxy?url=${encodeURIComponent('https://html.duckduckgo.com/html/')}`} 
+                  title="Browser" 
+                  width="100%" 
+                  height="450px" 
+                  style={{ border: "none" }}
+                />
+              </DesktopIcon>
+            </WindowErrorBoundary>
 
-            <DesktopIcon width={650} icon={<Wordpad />} name="Resume">
-              <WindowErrorBoundary>
+            <WindowErrorBoundary>
+              <DesktopIcon width={650} icon={<Wordpad />} name="Resume">
                 <Resume />
-              </WindowErrorBoundary>
-            </DesktopIcon>
+              </DesktopIcon>
+            </WindowErrorBoundary>
 
-            <DesktopIcon width={650} icon={<Pbrush1 />} name="Art Gallery">
-              <WindowErrorBoundary>
+            <WindowErrorBoundary>
+              <DesktopIcon width={650} icon={<Pbrush1 />} name="Art Gallery">
                 <ArtGallery />
-              </WindowErrorBoundary>
-            </DesktopIcon>
+              </DesktopIcon>
+            </WindowErrorBoundary>
 
-            <DesktopIcon width={400} height={400} icon={<Joy102 />} name="Game">
-              <WindowErrorBoundary>
+            <WindowErrorBoundary>
+              <DesktopIcon width={450} height={450} icon={<Joy102 />} name="Game">
                 <Game />
-              </WindowErrorBoundary>
-            </DesktopIcon>
+              </DesktopIcon>
+            </WindowErrorBoundary>
 
-            <DesktopIcon width={400} icon={<Mail />} name="Contact">
-              <WindowErrorBoundary>
+            <WindowErrorBoundary>
+              <DesktopIcon width={400} icon={<Mail />} name="Contact">
                 <Contact />
-              </WindowErrorBoundary>
-            </DesktopIcon>
+              </DesktopIcon>
+            </WindowErrorBoundary>
           </div>
+
           <WindowBar />
         </ClippyProvider>
       )}
