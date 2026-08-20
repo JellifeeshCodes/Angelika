@@ -62,7 +62,7 @@ function App() {
               <iframe 
                 width="420" 
                 height="315" 
-                src="https://www.youtube.com/embed/v4yk_eXNbjo" 
+                src="https://youtu.be/ZW5xq6K4Gz4" 
                 allowFullScreen 
                 title="Video Player" 
               />
