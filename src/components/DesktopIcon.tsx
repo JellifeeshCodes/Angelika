@@ -1,4 +1,5 @@
 import React, { type ReactNode, type ComponentType } from "react";
+import { createPortal } from "react-dom";
 import { Modal, TitleBar } from "@react95/core";
 import { useWindowsStore } from "../store/windows";
 
@@ -63,19 +64,17 @@ const DesktopIcon = ({
         <p style={styles.iconName}>{name}</p>
       </div>
 
-      {/* Fixed Window Container */}
-      {isOpen && (
-        <div style={{ position: "fixed", top: "40px", left: "120px", zIndex: 999, width: `${width}px`, maxWidth: "90vw" }}>
+      {/* Render Modal directly on document.body using React Portal */}
+      {isOpen &&
+        createPortal(
           <SafeModal
             id={name}
             icon={icon}
             title={name}
             closeModal={handleClose}
-            style={{
-              width: "100%",
-              height: height ? `${height}px` : "auto",
-              maxHeight: "80vh",
-            }}
+            defaultPosition={{ x: 120, y: 40 }}
+            width={width}
+            height={height}
             titleBarOptions={[
               <TitleBar.Close
                 style={{ marginBlock: "auto" }}
@@ -95,9 +94,9 @@ const DesktopIcon = ({
             >
               {children}
             </div>
-          </SafeModal>
-        </div>
-      )}
+          </SafeModal>,
+          document.body
+        )}
     </>
   );
 };
