@@ -65,14 +65,14 @@ function App() {
             </DesktopIcon>
 
             <DesktopIcon icon={<Inetcpl1313 />} name="Browser">
-              <iframe 
-                src="https://render-server-e5t6.onrender.com" 
-                title="Browser" 
-                width="100%" 
-                height="500px" 
-                style={{ border: "none" }}
-              />
-            </DesktopIcon>
+  <iframe 
+    src={`https://render-server-e5t6.onrender.com/proxy?url=${encodeURIComponent('https://html.duckduckgo.com/html/')}`} 
+    title="Browser" 
+    width="100%" 
+    height="500px" 
+    style={{ border: "none" }}
+  />
+</DesktopIcon>
 
             <DesktopIcon width={650} icon={<Wordpad />} name="Resume">
               <Resume />
