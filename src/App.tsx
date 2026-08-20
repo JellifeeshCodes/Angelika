@@ -65,12 +65,7 @@ function App() {
             </DesktopIcon>
 
             <DesktopIcon icon={<Inetcpl1313 />} name="Browser">
-              <iframe 
-                width={800} 
-                height={500} 
-                src="https://bing.com" 
-                title="Browser" 
-              />
+           <a href="https://www.bing.com" target="_blank" rel="noopener noreferrer">Search on Bing</a>
             </DesktopIcon>
 
             <DesktopIcon width={650} icon={<Wordpad />} name="Resume">
