@@ -71,11 +71,11 @@ const DesktopIcon = ({
           title={name}
           closeModal={handleClose}
           defaultPosition={{ x: 120, y: 40 }}
+          width={width}
+          height={height}
           style={{
-            width: `${width}px`,
-            maxWidth: "90vw",
-            height: height ? `${height}px` : "auto",
-            maxHeight: "80vh",
+            maxWidth: "95vw",
+            maxHeight: "90vh",
           }}
           titleBarOptions={[
             <TitleBar.Close
@@ -85,7 +85,19 @@ const DesktopIcon = ({
             />,
           ]}
         >
-          <div style={{ padding: "12px", overflowY: "auto", maxHeight: "calc(80vh - 50px)" }}>
+          <div 
+            style={{ 
+              padding: "6px", 
+              overflowY: "auto", 
+              boxSizing: "border-box",
+              width: "100%",
+              height: height ? "calc(100% - 32px)" : "auto", 
+              maxHeight: height ? undefined : "calc(85vh - 40px)",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+            }}
+          >
             {children}
           </div>
         </SafeModal>
