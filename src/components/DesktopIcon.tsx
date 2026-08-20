@@ -33,12 +33,14 @@ interface WindowProps {
 }
 
 const Window = ({ title, onClose, children, icon, width, height }: WindowProps) => {
-  // Removed useModal() to prevent Context-related white screen crashes
   return (
     <SafeModal
       id={title}
       icon={icon}
       title={title}
+      closeModal={onClose}
+      width={width}
+      height={height}
       titleBarOptions={[
         <TitleBar.Close
           style={{ marginBlock: "auto" }}
@@ -47,9 +49,9 @@ const Window = ({ title, onClose, children, icon, width, height }: WindowProps) 
         />,
       ]}
     >
-      <Modal.Content width={width ? `${width}px` : undefined} height={height ? `${height}px` : undefined}>
+      <div style={{ padding: "8px", overflowY: "auto", maxHeight: "100%" }}>
         {children}
-      </Modal.Content>
+      </div>
     </SafeModal>
   );
 };
@@ -72,7 +74,7 @@ const DesktopIcon = ({
   const { openWindow, closeWindow, isWindowOpen } = useWindowsStore();
   const isOpen = isWindowOpen(name);
 
-  const handleDoubleClick = () => {
+  const handleOpen = () => {
     openWindow(name);
   };
 
@@ -80,7 +82,6 @@ const DesktopIcon = ({
     closeWindow(name);
   };
 
-  // Added isValidElement check to prevent crashes if an icon prop is missing
   const renderIcon = (variantSize: string) => {
     if (!React.isValidElement(icon)) {
       return null; 
@@ -93,7 +94,11 @@ const DesktopIcon = ({
 
   return (
     <>
-      <div style={styles.desktopIcon} onDoubleClick={handleDoubleClick}>
+      <div 
+        style={styles.desktopIcon} 
+        onClick={handleOpen}
+        onDoubleClick={handleOpen}
+      >
         {renderIcon("32x32_4")}
         <p style={styles.iconName}>{name}</p>
       </div>
