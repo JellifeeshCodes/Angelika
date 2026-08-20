@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Button, Fieldset, Frame } from '@react95/core';
 
 interface ArtItem {
   id: string;
@@ -41,42 +40,7 @@ const galleryData: ArtItem[] = [
   },
 ];
 
-function GalleryItem({ item }: { item: ArtItem }) {
-  return (
-    <Fieldset legend={`${item.title} (${item.year})`} style={{ marginBottom: '16px' }}>
-      <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', alignItems: 'flex-start' }}>
-        <Frame
-          boxShadow="in"
-          style={{
-            padding: '4px',
-            backgroundColor: '#fff',
-            display: 'inline-block',
-          }}
-        >
-          <img
-            src={item.src}
-            alt={item.title}
-            style={{
-              width: '220px',
-              height: '160px',
-              objectFit: 'cover',
-              display: 'block',
-            }}
-          />
-        </Frame>
-
-        <div style={{ flex: 1, minWidth: '200px' }}>
-          <p style={{ margin: '0 0 8px 0', fontWeight: 'bold' }}>
-            Medium: <span style={{ fontWeight: 'normal' }}>{item.medium}</span>
-          </p>
-          <p style={{ margin: 0 }}>{item.description}</p>
-        </div>
-      </div>
-    </Fieldset>
-  );
-}
-
-function ArtGallery() {
+export default function ArtGallery() {
   const [activeTab, setActiveTab] = useState('All Works');
 
   const filteredArt = galleryData.filter((art) => {
@@ -86,37 +50,81 @@ function ArtGallery() {
   });
 
   return (
-    <div style={{ padding: '8px', maxHeight: '500px', overflowY: 'auto' }}>
-      {/* Retro Tab Bar */}
+    <div style={{ padding: '12px', backgroundColor: '#c0c0c0', color: '#000', height: '100%' }}>
+      {/* Tab Navigation */}
       <div style={{ display: 'flex', gap: '4px', marginBottom: '8px' }}>
         {['All Works', 'Digital Art', '3D & Assets'].map((tab) => (
-          <Button
+          <button
             key={tab}
             onClick={() => setActiveTab(tab)}
-            style={{ 
+            style={{
+              padding: '4px 10px',
+              backgroundColor: '#c0c0c0',
+              border: '2px solid',
+              borderColor: activeTab === tab ? '#000 #fff #fff #000' : '#fff #000 #000 #fff',
               fontWeight: activeTab === tab ? 'bold' : 'normal',
-              boxShadow: activeTab === tab ? 'inset 1px 1px 0px #000, inset -1px -1px 0px #fff' : undefined 
+              cursor: 'pointer',
+              fontSize: '13px',
             }}
           >
             {tab}
-          </Button>
+          </button>
         ))}
       </div>
 
-      <Frame boxShadow="in" style={{ padding: '16px', backgroundColor: '#c0c0c0' }}>
-        <h3 style={{ marginTop: 0 }}>Angelika's Portfolio</h3>
-        <p style={{ marginBottom: '16px' }}>
+      {/* Main Container */}
+      <div 
+        style={{ 
+          border: '2px solid', 
+          borderColor: '#808080 #fff #fff #808080', 
+          backgroundColor: '#c0c0c0', 
+          padding: '12px', 
+          maxHeight: '400px', 
+          overflowY: 'auto' 
+        }}
+      >
+        <h3 style={{ margin: '0 0 8px 0' }}>Angelika's Portfolio</h3>
+        <p style={{ margin: '0 0 16px 0', fontSize: '13px' }}>
           A collection of digital artwork, illustrations, and 3D models.
         </p>
 
-        {filteredArt.length === 0 ? (
-          <p style={{ fontStyle: 'italic' }}>No artworks available in this category.</p>
-        ) : (
-          filteredArt.map((art) => <GalleryItem key={art.id} item={art} />)
-        )}
-      </Frame>
+        {filteredArt.map((art) => (
+          <fieldset
+            key={art.id}
+            style={{
+              border: '2px groove #dfdfdf',
+              marginBottom: '16px',
+              padding: '12px',
+            }}
+          >
+            <legend style={{ padding: '0 4px', fontWeight: 'bold', fontSize: '13px' }}>
+              {art.title} ({art.year})
+            </legend>
+            <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', alignItems: 'flex-start' }}>
+              <div 
+                style={{ 
+                  border: '2px solid', 
+                  borderColor: '#808080 #fff #fff #808080', 
+                  padding: '2px', 
+                  backgroundColor: '#fff' 
+                }}
+              >
+                <img
+                  src={art.src}
+                  alt={art.title}
+                  style={{ width: '200px', height: '150px', objectFit: 'cover', display: 'block' }}
+                />
+              </div>
+              <div style={{ flex: 1, minWidth: '180px' }}>
+                <p style={{ margin: '0 0 8px 0', fontWeight: 'bold', fontSize: '13px' }}>
+                  Medium: <span style={{ fontWeight: 'normal' }}>{art.medium}</span>
+                </p>
+                <p style={{ margin: 0, fontSize: '13px' }}>{art.description}</p>
+              </div>
+            </div>
+          </fieldset>
+        ))}
+      </div>
     </div>
   );
 }
-
-export default ArtGallery;
