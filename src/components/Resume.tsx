@@ -5,7 +5,7 @@ function Resume() {
     <Tabs defaultActiveTab="Introduction">
       <Tab title="Introduction">
         <h3>Welcome, I'm Angelika Dael</h3>
-        <Avatar src="https://media.licdn.com/dms/image/v2/D5603AQFLBdRxeCt_MA/profile-displayphoto-scale_400_400/B56ZrH2m2nKwAg-/0/1764289575340?e=1769644800&v=beta&t=7ZLw4_gZwJJpr3Qi1n7JMTfZ5myZVtxWrQSLOX_9sf8" alt="A portrait of the artisan" size="140px" />
+        <Avatar src="https://64.media.tumblr.com/aa24bb5b35058ab8c9d67db5fcfa711a/ca954de598e315cd-88/s2048x3072/29bc53e526f2e6c3fd9ea036b485bb8412ee1a22.jpg" alt="A portrait of the artisan" size="140px" />
 
         <p>An ICT Support Officer at St Vincent de Paul Society Australia</p>
         <Fieldset legend="My Story">
