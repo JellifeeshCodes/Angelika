@@ -1,7 +1,17 @@
 import React, { useState } from 'react';
 import { Button, Fieldset, Frame } from '@react95/core';
 
-const galleryData = [
+interface ArtItem {
+  id: string;
+  category: string;
+  title: string;
+  medium: string;
+  year: string;
+  description: string;
+  src: string;
+}
+
+const galleryData: ArtItem[] = [
   {
     id: 'art-1',
     category: 'Digital Art',
@@ -31,7 +41,7 @@ const galleryData = [
   },
 ];
 
-function GalleryItem({ item }) {
+function GalleryItem({ item }: { item: ArtItem }) {
   return (
     <Fieldset legend={`${item.title} (${item.year})`} style={{ marginBottom: '16px' }}>
       <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', alignItems: 'flex-start' }}>
@@ -82,9 +92,11 @@ function ArtGallery() {
         {['All Works', 'Digital Art', '3D & Assets'].map((tab) => (
           <Button
             key={tab}
-            active={activeTab === tab}
             onClick={() => setActiveTab(tab)}
-            style={{ fontWeight: activeTab === tab ? 'bold' : 'normal' }}
+            style={{ 
+              fontWeight: activeTab === tab ? 'bold' : 'normal',
+              boxShadow: activeTab === tab ? 'inset 1px 1px 0px #000, inset -1px -1px 0px #fff' : undefined 
+            }}
           >
             {tab}
           </Button>
