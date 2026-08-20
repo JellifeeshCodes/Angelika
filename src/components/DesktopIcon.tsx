@@ -32,15 +32,20 @@ interface WindowProps {
   onClose: () => void;
 }
 
-const Window = ({ title, onClose, children, icon, width, height }: WindowProps) => {
+const Window = ({ title, onClose, children, icon, width = 600, height = 450 }: WindowProps) => {
   return (
     <SafeModal
       id={title}
       icon={icon}
       title={title}
       closeModal={onClose}
+      defaultPosition={{ x: 100, y: 40 }}
       width={width}
       height={height}
+      style={{
+        maxWidth: "90vw",
+        maxHeight: "85vh",
+      }}
       titleBarOptions={[
         <TitleBar.Close
           style={{ marginBlock: "auto" }}
@@ -49,7 +54,14 @@ const Window = ({ title, onClose, children, icon, width, height }: WindowProps) 
         />,
       ]}
     >
-      <div style={{ padding: "8px", overflowY: "auto", maxHeight: "100%" }}>
+      <div 
+        style={{ 
+          padding: "8px", 
+          overflowY: "auto", 
+          height: "calc(100% - 30px)", 
+          boxSizing: "border-box" 
+        }}
+      >
         {children}
       </div>
     </SafeModal>
@@ -82,6 +94,7 @@ const DesktopIcon = ({
     closeWindow(name);
   };
 
+  // Safe icon renderer to prevent crashes if an icon variant doesn't exist
   const renderIcon = (variantSize: string) => {
     if (!React.isValidElement(icon)) {
       return null; 
@@ -89,15 +102,19 @@ const DesktopIcon = ({
     if (typeof icon.type === "string") {
       return icon; 
     }
-    return React.cloneElement(icon as ReactElement, { variant: variantSize } as Record<string, unknown>);
+    try {
+      return React.cloneElement(icon as ReactElement, { variant: variantSize } as Record<string, unknown>);
+    } catch {
+      return icon;
+    }
   };
 
   return (
     <>
       <div 
         style={styles.desktopIcon} 
-        onClick={handleOpen}
         onDoubleClick={handleOpen}
+        onClick={handleOpen}
       >
         {renderIcon("32x32_4")}
         <p style={styles.iconName}>{name}</p>
@@ -106,7 +123,7 @@ const DesktopIcon = ({
         <Window
           width={width}
           height={height}
-          icon={renderIcon("16x16_4")}
+          icon={renderIcon("32x32_4")}
           title={name}
           onClose={handleCloseWindow}
         >
