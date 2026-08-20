@@ -90,7 +90,7 @@ function Resume() {
           </Checkbox>
           <Checkbox readOnly checked>
             2013-2017 | YEAR 12, WIRREANDA SECONDARY SCHOOL MORPHETT VALE, SA
-             <li>· Award for Outstanding Achievement in Digital Technology.</li>
+             <li>Award for Outstanding Achievement in Digital Technology.</li>
           </Checkbox>
         </Fieldset>
                 <Fieldset legend="Achievements">
@@ -113,13 +113,13 @@ function Resume() {
       <Tab title="References & Availability">
         <Fieldset legend="References">
             <ul>
-              <li className="references">Maria DeBoer – Manager – Coles Supermarket – 0451 093 758</li>
-              <li className="references">Christian Dael – Manager – Pizza Pan – 0404 638 772</li>
+              <li className="references">Maria DeBoer – Manager – Coles Supermarket</li>
+              <li className="references">Christian Dael – Manager – Pizza Pan</li>
             </ul>
         </Fieldset>
                 <Fieldset legend="Availability">
             <ul>
-              <li className="availability">Mondays, Saturdays & Sundays</li>
+              <li className="availability">Tuesdays, Fridays, Saturdays & Sundays</li>
             </ul>
         </Fieldset>
       </Tab>
