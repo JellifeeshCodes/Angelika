@@ -80,16 +80,18 @@ function App() {
             }}
           >
             <WindowErrorBoundary>
-              <DesktopIcon icon={<Amovie2 />} name="Video">
-                <iframe 
-                  width="1920" 
-                  height="1920" 
-                  src="https://www.youtube.com/embed/ZW5xq6K4Gz4" 
-                  allowFullScreen 
-                  title="Video Player" 
-                />
-              </DesktopIcon>
-            </WindowErrorBoundary>
+  <DesktopIcon width={580} icon={<Amovie2 />} name="Video">
+    <iframe 
+      width="560" 
+      height="315" 
+      src="https://www.youtube.com/embed/ZW5xq6K4Gz4" 
+      title="Video Player" 
+      style={{ border: "none" }}
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowFullScreen 
+    />
+  </DesktopIcon>
+</WindowErrorBoundary>
 
             <WindowErrorBoundary>
               <DesktopIcon icon={<Inetcpl1313 />} name="Browser">
